@@ -1,23 +1,16 @@
-import { legacy_createStore as createStore } from 'redux';
 
-const counterReducer = (state= {counter: 0}, action) => {
+import { createSlice, configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counter";
+import authReducer from "./auth";
 
-  if (action.type === 'increment') {
-    return {
-      counter: state.counter + 1
-    }
-  }
-  
-  if (action.type === 'decrement') {
-    return {
-      counter: state.counter - 1
-    }
-  }
+const store = configureStore({
+	reducer: { 
+    counter: counterReducer, 
+    auth: authReducer 
+  },
+});
 
-  return state;
 
-};
 
-const store = createStore(counterReducer); 
 
 export default store;
